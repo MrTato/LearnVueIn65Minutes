@@ -3,6 +3,8 @@
     <div class="holder">
       <form @submit.prevent="addSkill" >
         <input type="text" placeholder="Enter a skill..." v-model="skill" />
+
+        <input type="checkbox" id="checkbox" v-model="checked" />
       </form>
       {{ skill }}
 
@@ -22,6 +24,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      checked: false,
       skill: '',
       skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
     };
