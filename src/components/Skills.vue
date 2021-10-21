@@ -2,11 +2,12 @@
   <div class="hello">
     <div class="holder">
       <ul>
-        <li v-for="(data, index) in skills" :key="index">{{index}}. {{data.skill}}</li>
+        <li v-for="(data, index) in skills" :key="index">
+          {{ index }}. {{ data.skill }}
+        </li>
       </ul>
 
-      <p v-if="skills.length >= 1">You have more than 1 skills</p>
-      <p v-else>You have 0 skills</p>
+      <div v-bind:class="{ alert: !showAlert }"></div>
     </div>
     {{ name }}
 
@@ -23,18 +24,18 @@ export default {
   name: "Skills",
   data() {
     return {
-      name: "Coursetro",
-      btnState: true,
-      skills: [
-        { skill: "Vue.js" },
-        { skill: "Frontend Developer" },
-        ],
+      skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
+      showAlert: true,
     };
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="./Skills.css" scoped>
-
+<style scoped>
+  .alert {
+    background-color: yellow;
+    width: 100%;
+    height: 30px;
+  }
 </style>
