@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
     <div class="holder">
-      <input type="text" placeholder="Enter a skill..." v-model="skill" />
+      <form @submit.prevent="addSkill" >
+        <input type="text" placeholder="Enter a skill..." v-model="skill" />
+      </form>
       {{ skill }}
 
       <ul>
@@ -24,6 +26,11 @@ export default {
       skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
     };
   },
+  methods: {
+    addSkill() {
+      this.skills.push({skill: this.skill});
+    }
+  }
 };
 </script>
 
