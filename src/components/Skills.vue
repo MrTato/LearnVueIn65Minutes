@@ -7,15 +7,8 @@
         </li>
       </ul>
 
-      <div v-bind:class="{ alert: !showAlert }"></div>
+      <div v-bind:class="{ alert: showAlert, 'another-class': showClass }"></div>
     </div>
-    {{ name }}
-
-    {{ btnState ? "The button is disabled" : "The button is active" }}
-
-    <button v-on:click="changeName" v-bind:disabled="btnState">
-      Change Name
-    </button>
   </div>
 </template>
 
@@ -26,6 +19,7 @@ export default {
     return {
       skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
       showAlert: true,
+      showClass: true,
     };
   },
 };
@@ -37,5 +31,9 @@ export default {
     background-color: yellow;
     width: 100%;
     height: 30px;
+  }
+
+  .another-class {
+    border: 5px solid black;
   }
 </style>
