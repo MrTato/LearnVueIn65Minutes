@@ -2,7 +2,8 @@
   <div class="hello">
     <div class="holder">
       <form @submit.prevent="addSkill" >
-        <input type="text" placeholder="Enter a skill..." v-model="skill" />
+        <input type="text" placeholder="Enter a skill..." v-model="skill" v-validate="'min: 5'" name="skill"/>
+        <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
 
         <input type="checkbox" id="checkbox" v-model="checked" />
       </form>
@@ -95,5 +96,13 @@ export default {
     font-size: 1.3em;
     background-color: #323333;
     color: #687F7F;
+  }
+
+  .alert {
+    background: #fdf2ce;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+    margin-top: -20px;
   }
 </style>
