@@ -10,7 +10,7 @@
           name="skill"
         />
 
-        <transition name="alert-in">
+        <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
           <p class="alert" v-if="errors.has('skill')">
             {{ errors.first("skill") }}
           </p>
@@ -58,6 +58,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
 body {
