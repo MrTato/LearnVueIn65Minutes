@@ -1,9 +1,17 @@
 <template>
   <div class="hello">
     <div class="holder">
-      <form @submit.prevent="addSkill" >
-        <input type="text" placeholder="Enter a skill..." v-model="skill" v-validate="'min: 5'" name="skill"/>
-        <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
+      <form @submit.prevent="addSkill">
+        <input
+          type="text"
+          placeholder="Enter a skill..."
+          v-model="skill"
+          v-validate="'min: 5'"
+          name="skill"
+        />
+        <p class="alert" v-if="errors.has('skill')">
+          {{ errors.first("skill") }}
+        </p>
 
         <input type="checkbox" id="checkbox" v-model="checked" />
       </form>
@@ -26,83 +34,91 @@ export default {
   data() {
     return {
       checked: false,
-      skill: '',
+      skill: "",
       skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }],
     };
   },
   methods: {
     addSkill() {
-      this.skills.push({skill: this.skill});
-    }
-  }
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.skills.push({ skill: this.skill });
+          this.skill = "";
+        } else {
+          console.log("Not valid");
+        }
+      });
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-  body {
-    background-color: #EEEEEE;
-    font-family: 'Montserrat', 'sans-serif';
-    display: grid;
-    grid-template-rows: auto;
-    justify-items: center;
-    align-items: center;
-  }
+body {
+  background-color: #eeeeee;
+  font-family: "Montserrat", "sans-serif";
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+}
 
-  body, html {
-    margin: 0;
-    height: 100%;
-  }
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
 
-  #app {
-    width: 50%;
-  }
+#app {
+  width: 50%;
+}
 
-  .holder {
-    background: #fff;
-  }
+.holder {
+  background: #fff;
+}
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
 
-  ul li {
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #E0EDF4;
-    border-left: 5px solid #3EB3F6;
-    margin-bottom: 2px;
-    color: #3E5252;
-  }
+ul li {
+  padding: 20px;
+  font-size: 1.3em;
+  background-color: #e0edf4;
+  border-left: 5px solid #3eb3f6;
+  margin-bottom: 2px;
+  color: #3e5252;
+}
 
-  p {
-    text-align: center;
-    padding: 30px 0;
-    color: gray;
-  }
+p {
+  text-align: center;
+  padding: 30px 0;
+  color: gray;
+}
 
-  .container {
-    box-shadow: 0px 0px 40px lightgray;
-  }
-  
-  input {
-    width: calc(100% - 40px);
-    border: 0;
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #323333;
-    color: #687F7F;
-  }
+.container {
+  box-shadow: 0px 0px 40px lightgray;
+}
 
-  .alert {
-    background: #fdf2ce;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px;
-    margin-top: -20px;
-  }
+input {
+  width: calc(100% - 40px);
+  border: 0;
+  padding: 20px;
+  font-size: 1.3em;
+  background-color: #323333;
+  color: #687f7f;
+}
+
+.alert {
+  background: #fdf2ce;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px;
+  margin-top: -20px;
+}
 </style>
