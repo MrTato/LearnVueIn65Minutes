@@ -1,5 +1,22 @@
 # vue-skills
 
+## Useful Commands
+```
+npm install -g @vue/cli
+```
+
+```
+vue create vue-skills
+```
+
+```
+yarn add vee-validate
+```
+
+```
+yarn add vue-router
+```
+
 ## Project setup
 ```
 yarn install
