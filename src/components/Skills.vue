@@ -10,7 +10,11 @@
           name="skill"
         />
 
-        <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
+        <transition
+          name="alert-in"
+          enter-active-class="animated flipInX"
+          leave-active-class="animated flipOutX"
+        >
           <p class="alert" v-if="errors.has('skill')">
             {{ errors.first("skill") }}
           </p>
@@ -21,9 +25,11 @@
       {{ skill }}
 
       <ul>
-        <li v-for="(data, index) in skills" :key="index">
-          {{ data.skill }}
-        </li>
+        <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+          <li v-for="(data, index) in skills" :key="index">
+            {{ data.skill }}
+          </li>
+        </transition-group>
       </ul>
 
       <p>These are the skills that you possess.</p>
@@ -61,23 +67,13 @@ export default {
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-body {
-  background-color: #eeeeee;
-  font-family: "Montserrat", "sans-serif";
-  display: grid;
-  grid-template-rows: auto;
-  justify-items: center;
-  align-items: center;
-}
-
-body,
-html {
-  margin: 0;
-  height: 100%;
-}
-
 #app {
-  width: 50%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 
 .holder {
@@ -127,10 +123,10 @@ input {
 }
 
 .alert-in-enter-active {
-  animation: bounce-in .5s;
+  animation: bounce-in 0.5s;
 }
 .alert-in-enter-active {
-  animation: bounce-in .5s reverse;
+  animation: bounce-in 0.5s reverse;
 }
 
 @keyframes bounce-in {
